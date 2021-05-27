@@ -74,13 +74,13 @@ class Octave(AutotoolsPackage, GNUMirrorPackage):
     depends_on('sed', when=sys.platform == 'darwin', type='build')
     depends_on('pcre')
     depends_on('pkgconfig', type='build')
-    depends_on('autoconf', when='@develop', type='build')
-    depends_on('automake', when='@develop', type='build')
-    depends_on('bison',    when='@develop', type='build')
-    depends_on('flex',     when='@develop', type='build')
-    depends_on('gperf',    when='@develop', type='build')
-    depends_on('libtool',  when='@develop', type='build')
-    depends_on('m4',       when='@develop', type='build')
+    depends_on('autoconf',  type='build', when='@develop')
+    depends_on('automake',  type='build', when='@develop')
+    depends_on('bison',     type='build', when='@develop')
+    depends_on('flex',      type='build', when='@develop')
+    depends_on('gperf',     type='build', when='@develop')
+    depends_on('libtool',   type='build', when='@develop')
+    depends_on('m4',        type='build', when='@develop')
 
     # Strongly recommended dependencies
     depends_on('readline',     when='+readline')
@@ -158,6 +158,10 @@ class Octave(AutotoolsPackage, GNUMirrorPackage):
             shutil.copy(helloworld_cc, tmp_dir)
             with working_dir(tmp_dir):
                 mkoctfile('helloworld.cc')
+
+    @when('@develop')
+    def autoreconf(self, spec, prefix):
+        Executable('./bootstrap')()
 
     def configure_args(self):
         # See
