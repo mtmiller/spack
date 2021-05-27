@@ -74,6 +74,13 @@ class Octave(AutotoolsPackage, GNUMirrorPackage):
     depends_on('sed', when=sys.platform == 'darwin', type='build')
     depends_on('pcre')
     depends_on('pkgconfig', type='build')
+    depends_on('autoconf', when='@develop', type='build')
+    depends_on('automake', when='@develop', type='build')
+    depends_on('bison',    when='@develop', type='build')
+    depends_on('flex',     when='@develop', type='build')
+    depends_on('gperf',    when='@develop', type='build')
+    depends_on('libtool',  when='@develop', type='build')
+    depends_on('m4',       when='@develop', type='build')
 
     # Strongly recommended dependencies
     depends_on('readline',     when='+readline')
