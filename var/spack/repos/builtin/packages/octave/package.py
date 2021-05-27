@@ -81,6 +81,7 @@ class Octave(AutotoolsPackage, GNUMirrorPackage):
     depends_on('gperf',     type='build', when='@develop')
     depends_on('libtool',   type='build', when='@develop')
     depends_on('m4',        type='build', when='@develop')
+    depends_on('texinfo',   type='build', when='@develop')
 
     # Strongly recommended dependencies
     depends_on('readline',     when='+readline')
